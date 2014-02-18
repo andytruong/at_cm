@@ -12,6 +12,7 @@ connect with CampaignMonitor service.
     `sites/all/libraries/campaignmonitor`, then we can find
     `sites/all/libraries/campaignmonitor/csrest_general.php`
 1. In your settings.php, add `$conf['at_cm.api_key'] = 'PUT YOUR API KEY HERE'`.
+    This value is available at /admin/account/
 
 ### Usage
 
