@@ -3,52 +3,52 @@ services:
   cm.administrators:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Administrators
-    file: %campaignmonitor/csrest_administrators.php
+    file: '%campaignmonitor/csrest_administrators.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_campaigns.php
   cm.campaigns:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Campaigns
-    file: %campaignmonitor/csrest_campaigns.php
+    file: '%campaignmonitor/csrest_campaigns.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_clients.php
   cm.clients:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Clients
-    file: %campaignmonitor/csrest_clients.php
+    file: '%campaignmonitor/csrest_clients.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_general.php
   cm.general:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_General
-    file: %campaignmonitor/csrest_general.php
+    file: '%campaignmonitor/csrest_general.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_lists.php
   cm.lists:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Lists
-    file: %campaignmonitor/csrest_lists.php
+    file: '%campaignmonitor/csrest_lists.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_people.php
   cm.people:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_People
-    file: %campaignmonitor/csrest_people.php
+    file: '%campaignmonitor/csrest_people.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_segments.php
   cm.segments:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Segments
-    file: %campaignmonitor/csrest_segments.php
+    file: '%campaignmonitor/csrest_segments.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_subscribers.php
   cm.subscribers:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Subscribers
-    file: %campaignmonitor/csrest_subscribers.php
+    file: '%campaignmonitor/csrest_subscribers.php'
 
   # https://github.com/campaignmonitor/createsend-php/blob/master/csrest_templates.php
   cm.templates:
     arguments: ['@cm.at_cm.auth']
     class: CS_REST_Templates
-    file: %campaignmonitor/csrest_templates.php
+    file: '%campaignmonitor/csrest_templates.php'
