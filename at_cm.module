@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file at_cm.module
+ */
+
+/**
+ * Implements hook_init()
+ */
+function at_cm_init() {
+    if ($api_key = variable_get('at_cm.api_key', '')) {
+        at_container('container')->offsetSet('at_cm.auth', $api_key);
+    }
+}
+
+/**
+ * Shortcuts to services, support type hints.
+ */
+class AT_CM
+{
+
+    /**
+     * Get cm.general service.
+     *
+     * @return CS_REST_General
+     */
+    public static function getGeneral()
+    {
+        return at_container('cm.general');
+    }
+
+    /**
+     * Get cm.admins service.
+     *
+     * @return CS_REST_Administrators
+     */
+    public static function getAdministrators()
+    {
+        return at_container('cm.cm.administrators');
+    }
+
+    /**
+     * Get cm.campaigns service.
+     *
+     * @return CS_REST_Campaigns
+     */
+    public static function getCampaigns()
+    {
+        return at_container('cm.campaigns');
+    }
+
+    /**
+     * Get cm.clients service.
+     *
+     * @return CS_REST_Clients
+     */
+    public static function getClients()
+    {
+        return at_container('cm.clients');
+    }
+
+    /**
+     * Get cm.lists service.
+     *
+     * @return CS_REST_Lists
+     */
+    public static function getLists()
+    {
+        return at_container('cm.lists');
+    }
+
+    /**
+     * Get cm.people service.
+     *
+     * @return CS_REST_People
+     */
+    public static function getPeople()
+    {
+        return at_container('cm.people');
+    }
+
+    /**
+     * Get cm.segments service.
+     *
+     * @return CS_REST_Segments
+     */
+    public static function getSegments()
+    {
+        return at_container('cm.segments');
+    }
+
+    /**
+     * Get cm.subscribers service.
+     *
+     * @return CS_REST_Subscribers
+     */
+    public static function getSubscribers()
+    {
+        return at_container('cm.subscribers');
+    }
+
+    /**
+     * Get cm.templates service.
+     *
+     * @return CS_REST_Templates
+     */
+    public static function getTemplates()
+    {
+        return at_container('cm.templates');
+    }
+
+}

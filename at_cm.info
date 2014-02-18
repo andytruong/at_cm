@@ -1,0 +1,6 @@
+name = AT CampaignMonitor
+version = 7.x-1.0-dev
+core = 7.x
+package = Andy Truong
+
+dependencies[] = at_base
