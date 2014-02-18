@@ -34,3 +34,5 @@ Example:
 To have type hint, we can use AT_CM facade:
 
     AT_CM::getLists()->get_segments();
+
+![Type hint](https://s3-ap-southeast-2.amazonaws.com/uploads-au.hipchat.com/36134/251454/DyYL2PcAgLFxVc6/cm_type_hints.gif)
