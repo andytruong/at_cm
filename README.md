@@ -37,3 +37,40 @@ To have type hint, we can use AT_CM facade:
     AT_CM::getLists()->get_segments();
 
 ![Type hint](https://s3-ap-southeast-2.amazonaws.com/uploads-au.hipchat.com/36134/251454/DyYL2PcAgLFxVc6/cm_type_hints.gif)
+
+### Explore API using Drush api
+
+`drush at_cm` command is available there for us to explore the API.
+
+    $ drush at_cm
+
+    Service            Class
+    ----------         ---------------------
+    cm.administrators  CS_REST_Administrators
+    cm.campaigns       CS_REST_Campaigns
+    cm.clients         CS_REST_Clients
+    cm.general         CS_REST_General
+    cm.lists           CS_REST_Lists
+    cm.people          CS_REST_People
+    cm.segments        CS_REST_Segments
+    cm.subscribers     CS_REST_Subscribers
+    cm.templates       CS_REST_Templates
+
+    $ drush at_cm cm.general
+
+    Class                 Method                Params
+    ----------            ------------          ---------------------
+    CS_REST_General       authorize_url         ($client_id, $redirect_uri, $scope, $state)
+    CS_REST_General       get_clients           ()
+
+    $ drush at_cm cm.general get_clients
+
+    Array
+    (
+        [0] => stdClass Object
+            (
+                [ClientID] => ***
+                [Name] => GO1
+            )
+
+    )
