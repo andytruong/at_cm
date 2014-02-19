@@ -38,7 +38,18 @@ To have type hint, we can use AT_CM facade:
 
 ![Type hint](https://s3-ap-southeast-2.amazonaws.com/uploads-au.hipchat.com/36134/251454/DyYL2PcAgLFxVc6/cm_type_hints.gif)
 
-### Explore API using Drush api
+### Drush commands
+
+#### View Lists
+
+    # List all lists
+    drush at_cm.lists
+
+    Client   Client ID                         List Name    List ID
+    -------  -------                           -------      -------
+    GO1      ***                               Sample List  ***
+
+#### Explore API
 
 `drush at_cm` command is available there for us to explore the API.
 

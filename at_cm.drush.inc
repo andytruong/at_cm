@@ -11,6 +11,11 @@ function at_cm_drush_command() {
       'description' => 'CLI for CampaignMonitor services',
     );
 
+    $cmds['at_cm.lists'] = array(
+      'callback' => 'at_cm_list_drush_callback',
+      'description' => 'List all lists',
+    );
+
     return $cmds;
 }
 
@@ -99,4 +104,28 @@ function at_cm_drush_callback__list_args($service, $method) {
           'seprator' => array('----------'),
         ) + $rows, TRUE);
     }
+}
+
+function at_cm_list_drush_callback() {
+    $sgeneral = AT_CM::getGeneral();
+    $sclient = AT_CM::getClients();
+    $rows = array();
+
+    foreach ($sgeneral->get_clients()->response as $client) {
+        $sclient->set_client_id($client->ClientID);
+
+        foreach ($sclient->get_lists()->response as $list) {
+            $rows[] = array(
+              $client->Name,
+              $client->ClientID,
+              $list->Name,
+              $list->ListID
+            );
+        }
+    }
+
+    drush_print_table(array(
+      'header'   => array('Client',   'Client ID', 'List Name', 'List ID'),
+      'seprator' => array('-------',  '-------',   '-------',   '-------'),
+    ) + $rows, TRUE);
 }
