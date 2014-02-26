@@ -17,7 +17,7 @@ function at_cm_rules_action_info() {
         'list_ids' => array(
           'type' => 'list<text>',
           'label' => t('List ID'),
-          'options list' => 'at_cm_rules_lists_options_list',
+          'options list' => 'at_cm_lists_options',
           'optional' => FALSE,
         ),
         'email' => array(
@@ -38,27 +38,6 @@ function at_cm_rules_action_info() {
     ),
     // unsubscribe
   );
-}
-
-/**
- * Generate options for List select widget
- */
-function at_cm_rules_lists_options_list() {
-    return at_cache('at_cm:lists', function() {
-        $sgeneral = AT_CM::getGeneral();
-        $sclient = AT_CM::getClients();
-        $options = array();
-
-        foreach ($sgeneral->get_clients()->response as $client) {
-            $sclient->set_client_id($client->ClientID);
-
-            foreach ($sclient->get_lists()->response as $list) {
-                $options[$list->ListID] = "{$client->Name} › {$list->Name}";
-            }
-        }
-
-        return $options;
-    });
 }
 
 function at_cm_action_subscribers_add($list_ids, $email, $name) {
