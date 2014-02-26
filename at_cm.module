@@ -127,6 +127,42 @@ function at_cm_lists() {
 }
 
 /**
+ * Add a contact to a list.
+ *
+ * @param  string $list_id
+ * @param  string $mail
+ * @param  string $name
+ */
+function at_cm_list_add_contact($list_id, $mail, $name = '') {
+    $service_subscriber = AT_CM::getSubscribers();
+    $service_subscriber->set_list_id($list_id);
+
+    $response = $service_subscriber->add($subscriber = array(
+        'EmailAddress' => $mail,
+        'Name' => !empty($name) ? filter_xss_admin($name) : '',
+    ));
+
+    if ($response->http_status_code == 201) {
+        watchdog(
+          'at_cm',
+          'Subcribed %mail to %list',
+          array('%mail' => $mail, '%list' => $list_id),
+          WATCHDOG_INFO
+        );
+        return TRUE;
+    }
+    else {
+        watchdog(
+          'at_cm',
+          'Failed to subcribed %mail to %list',
+          array('%mail' => $mail, '%list' => $list_id),
+          WATCHDOG_ERROR
+        );
+        return FALSE;
+    }
+}
+
+/**
  * Helper function to check list ID valid.
  *
  * @param  string $list_id

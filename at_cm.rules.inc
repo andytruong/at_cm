@@ -40,31 +40,14 @@ function at_cm_rules_action_info() {
   );
 }
 
-function at_cm_action_subscribers_add($list_ids, $email, $name) {
-    $service_subscriber = AT_CM::getSubscribers();
-
+/**
+ * Callback for action: at_cm_subscribers_add
+ * @param  array $list_ids [description]
+ * @param  string $mail     [description]
+ * @param  string $name     [description]
+ */
+function at_cm_action_subscribers_add($list_ids, $mail, $name) {
     foreach ($list_ids as $list_id) {
-        $service_subscriber->set_list_id($list_id);
-        $response = $service_subscriber->add($subscriber = array(
-             'EmailAddress' => $email,
-             'Name' => filter_xss_admin($name),
-        ));
-
-        if ($response->http_status_code == 201) {
-            watchdog(
-              'at_cm',
-              'Subcribed %mail to %list',
-              array('%mail' => $email, '%list' => $list_id),
-              WATCHDOG_INFO
-            );
-        }
-        else {
-            watchdog(
-              'at_cm',
-              'Failed to subcribed %mail to %list',
-              array('%mail' => $email, '%list' => $list_id),
-              WATCHDOG_ERROR
-            );
-        }
+        at_cm_list_add_contact($list_id, $mail, $name);
     }
 }
