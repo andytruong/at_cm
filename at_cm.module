@@ -103,3 +103,37 @@ class AT_CM
     }
 
 }
+
+function at_cm_lists() {
+    return at_cache('at_cm:lists', function() {
+        $sgeneral = AT_CM::getGeneral();
+        $sclient = AT_CM::getClients();
+        $options = array();
+        $lists = array();
+
+        foreach ($sgeneral->get_clients()->response as $client) {
+            $sclient->set_client_id($client->ClientID);
+
+            $lists[$client->ClientID]['client'] = $client;
+            $lists[$client->ClientID]['lists'] = array();
+
+            foreach ($sclient->get_lists()->response as $list) {
+                $lists[$client->ClientID]['lists'][] = $list;
+            }
+        }
+
+        return $lists;
+    });
+}
+
+/**
+ * Generate options for List select widget
+ */
+function at_cm_lists_options() {
+  foreach (at_cm_lists() as $client_id => $client_data) {
+    foreach ($client_data['lists'] as $list) {
+      $options[$list->ListID] = "{$client_data['client']->Name} › {$list->Name}";
+    }
+  }
+  return $options;
+}
