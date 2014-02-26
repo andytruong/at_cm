@@ -31,13 +31,19 @@ function at_cm_field_info() {
 
 /**
  * Implements hook_field_validate().
- *
- * Possible error codes:
- * - 'text_value_max_length': The value exceeds the maximum length.
- * - 'text_summary_max_length': The summary exceeds the maximum length.
  */
 function at_cm_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
-  text_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, $errors);
+  foreach ($items as $delta => $item) {
+    $list_id = reset($item);
+    if (!empty($list_id)) {
+      if (!at_cm_list_is_valid(reset($item))) {
+          $errors[$field['field_name']][$langcode][$delta][] = array(
+            'error' => "at_cm_list_id_invalid",
+            'message' => t('Invalid list ID'),
+          );
+      }
+    }
+  }
 }
 
 /**
